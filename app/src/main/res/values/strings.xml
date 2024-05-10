@@ -3,6 +3,10 @@
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
     <string name="memberList">Member List</string>
+
+    <string name="headerName">ROOT</string>
+    <string name="headerDesc">Welcome to ROOT</string>
+
     <string-array name="languageDropDown">
         <item>Japansese Romaji</item>
         <item>Japansese Kana</item>
