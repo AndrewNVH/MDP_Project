@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsFragment">
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".SettingsFragment" >
+
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/lavender"/>
-</RelativeLayout>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/language" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="19dp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
