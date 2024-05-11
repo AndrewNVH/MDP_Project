@@ -19,7 +19,7 @@
         android:text="@string/language" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/langugeSel"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
