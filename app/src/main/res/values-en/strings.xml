@@ -5,6 +5,19 @@
     <string name="memberList">Member List</string>
     <string name="language">Language</string>
 
+    <string-array name="username">
+        <item>Admin</item>
+        <item>Andrew</item>
+        <item>Steven</item>
+        <item>Albertus</item>
+    </string-array>
+
+    <string-array name="password">
+        <item>Admin</item>
+        <item>221102614</item>
+        <item>221102619</item>
+        <item>221102613</item>
+    </string-array>
 
     <string name="headerName">ROOT</string>
     <string name="headerDesc">Welcome to ROOT</string>
@@ -41,4 +54,7 @@
     <string name="Share">Share</string>
     <string name="about_us">About Us</string>
     <string name="logout">Logout</string>
+    <string name="loginpage_name">Username</string>
+    <string name="loginpage_password">Password</string>
+    <string name="loginpage_button">Login</string>
 </resources>

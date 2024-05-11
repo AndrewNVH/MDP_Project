@@ -5,8 +5,19 @@
     <string name="memberList">Daftar Member</string>
     <string name="language">Bahasa</string>
 
+    <string-array name="username">
+        <item>Admin</item>
+        <item>Andrew</item>
+        <item>Steven</item>
+        <item>Albertus</item>
+    </string-array>
 
-
+    <string-array name="password">
+        <item>Admin</item>
+        <item>221102614</item>
+        <item>221102619</item>
+        <item>221102613</item>
+    </string-array>
 
     <string name="headerName">ROOT</string>
     <string name="headerDesc">Selamat datang di ROOT</string>
@@ -43,4 +54,7 @@
     <string name="Share">Bagikan</string>
     <string name="about_us">Mengenai Kami</string>
     <string name="logout">Keluar</string>
+    <string name="loginpage_name">Nama</string>
+    <string name="loginpage_password">Kata sandi</string>
+    <string name="loginpage_button">Masuk</string>
 </resources>

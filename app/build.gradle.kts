@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -61,6 +62,9 @@ dependencies {
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.2")
 
 
 }
