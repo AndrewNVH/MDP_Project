@@ -2,12 +2,14 @@
     <string name="app_name">MDP_Project</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <string name="memberList">Member List</string>
-    <string name="language">Language</string>
+    <string name="memberList">Daftar Member</string>
+    <string name="language">Bahasa</string>
+
+
 
 
     <string name="headerName">ROOT</string>
-    <string name="headerDesc">Welcome to ROOT</string>
+    <string name="headerDesc">Selamat datang di ROOT</string>
 
     <string-array name="languageDropDown">
         <item>English</item>
@@ -35,10 +37,10 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home">Home</string>
-    <string name="setting">Settings</string>
-    <string name="Share">Share</string>
-    <string name="about_us">About Us</string>
-    <string name="logout">Logout</string>
+    <string name="hello_blank_fragment">Selamat datang di fragment kosong</string>
+    <string name="home">Beranda</string>
+    <string name="setting">Pengaturan</string>
+    <string name="Share">Bagikan</string>
+    <string name="about_us">Mengenai Kami</string>
+    <string name="logout">Keluar</string>
 </resources>
