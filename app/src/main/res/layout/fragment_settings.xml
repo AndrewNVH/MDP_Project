@@ -9,21 +9,22 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
-        android:text="TextView"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/language" />
+        android:text="@string/language" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="300sp"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:layout_marginTop="19dp"
+        android:entries="@array/languageDropDown"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
