@@ -19,9 +19,10 @@ import com.example.mdp_project.databinding.FragmentSettingsBinding
 import java.util.Locale
 
 
+private var selectedLanguage: Int = 0
+
 class SettingsFragment : Fragment() {
     lateinit var binding: FragmentSettingsBinding
-    private var selectedLanguage: Int = 0;
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -31,7 +32,7 @@ class SettingsFragment : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.let {
-            selectedLanguage = it.getInt("selectedLanguage", 0)
+            selectedLanguage = it.getInt("selectedLanguage", -1)
         }
     }
 
@@ -41,18 +42,18 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.langugeSel.setSelection(selectedLanguage)
 
         val languageSelector: Spinner = binding.langugeSel;
         val languages = resources.getStringArray(R.array.languageDropDown)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
         languageSelector.adapter = adapter
+
+        binding.langugeSel.setSelection(selectedLanguage)
 
         languageSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -66,8 +67,7 @@ class SettingsFragment : Fragment() {
                     1 -> "in"
                     else -> "en"
                 }
-//                    Log.d("language", language)
-//                    Log.d("locale", getCurrentLanguage())
+                selectedLanguage = position
                 if (language != getCurrentLanguage())
                     setLocale(language)
                 }
@@ -78,7 +78,7 @@ class SettingsFragment : Fragment() {
         }
 
 
-        }
+    }
     private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
