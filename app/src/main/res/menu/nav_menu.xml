@@ -26,6 +26,12 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_question_mark_24"
             android:title="@string/about_us"/>
+        <item
+            android:id="@+id/nav_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/dashboard"
+            android:title="Dashboard" />
     </group>
     <item
         android:title="">

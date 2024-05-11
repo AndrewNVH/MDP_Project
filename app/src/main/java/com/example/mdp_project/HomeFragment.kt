@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mdp_project.databinding.FragmentHomeBinding
 
@@ -45,7 +46,8 @@ class HomeFragment : Fragment() {
 
         binding.memberList.text = getString(R.string.memberList)
         binding.memberRv.adapter = memberAdapter
-        binding.memberRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.memberRv.layoutManager = GridLayoutManager(context,2)
+//        binding.memberRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
 
 
