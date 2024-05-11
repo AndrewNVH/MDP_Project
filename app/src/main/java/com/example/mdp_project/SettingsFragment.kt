@@ -1,6 +1,9 @@
 package com.example.mdp_project
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,21 +11,35 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.mdp_project.databinding.FragmentSettingsBinding
 import java.util.Locale
 
+
 class SettingsFragment : Fragment() {
     lateinit var binding: FragmentSettingsBinding
+    private var selectedLanguage: Int = 0;
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedLanguage", selectedLanguage)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.let {
+            selectedLanguage = it.getInt("selectedLanguage", 0)
+        }
+    }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -30,6 +47,8 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.langugeSel.setSelection(selectedLanguage)
+
         val languageSelector: Spinner = binding.langugeSel;
         val languages = resources.getStringArray(R.array.languageDropDown)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
@@ -43,12 +62,14 @@ class SettingsFragment : Fragment() {
                 id: Long
             ) {
                 val language = when (position) {
-                    0 -> "jr"
-                    1 -> "jk"
-                    else -> "jr"
+                    0 -> "en"
+                    1 -> "in"
+                    else -> "en"
                 }
                 if (language != getCurrentLanguage())
                     setLocale(language)
+//                    Log.d("language", language)
+//                    Log.d("locale", getCurrentLanguage())
                 }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -61,17 +82,20 @@ class SettingsFragment : Fragment() {
     private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
-        val resources = requireContext().resources
+        val activityContext = requireActivity()
+        val resources = activityContext.resources
         val configuration = resources.configuration
         configuration.setLocale(locale)
         resources.updateConfiguration(configuration, resources.displayMetrics)
 
-        // Restart activity to apply language change
+
         requireActivity().recreate()
+
     }
     private fun getCurrentLanguage(): String {
-        return resources.configuration.locale.language
+        return requireActivity().resources.configuration.locale.language
     }
+
 
 }
 
