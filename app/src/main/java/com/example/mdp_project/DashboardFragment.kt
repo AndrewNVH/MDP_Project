@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginTop
+import androidx.core.view.size
+import com.example.mdp_project.databinding.FragmentDashboardBinding
+import com.example.mdp_project.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -24,6 +28,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DashboardFragment : Fragment() {
+    private lateinit var binding: FragmentDashboardBinding
+    var toggleTemp = 1
+    var toggleHum = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,18 +40,19 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val lineChart:LineChart = view.findViewById(R.id.lineChart)
+        var lineChart:LineChart = view.findViewById(R.id.lineChart)
 
-        val description: Description = lineChart.getDescription()
-        description.text = "Temperature"
-        description.setPosition(250f,15f)
+//        val description: Description = lineChart.getDescription()
+//        description.text = "Temperature"
+//        description.setPosition(300f,15f)
 
-        lineChart.description = description
+//        lineChart.description = description
         lineChart.axisRight.isEnabled = false
 
         val xValues = mutableListOf("1", "2", "3", "4","5","6","7","8","9","10")
@@ -56,7 +64,7 @@ class DashboardFragment : Fragment() {
 
         val yAxis = lineChart.axisLeft
         yAxis.axisMinimum = 0f
-        yAxis.axisMaximum = 100f
+        yAxis.axisMaximum = 50f
         yAxis.axisLineWidth = 2f
         yAxis.axisLineColor = resources.getColor(R.color.black)
         yAxis.setLabelCount(10)
@@ -89,12 +97,63 @@ class DashboardFragment : Fragment() {
 
         val lineDataSet1 = LineDataSet(entries1, "Temperature")
         lineDataSet1.color = resources.getColor(R.color.red)
+        lineDataSet1.valueTextSize = 10F
 
         val lineDataSet2 = LineDataSet(entries2, "Humidity")
         lineDataSet2.color = resources.getColor(R.color.blue)
+        lineDataSet2.valueTextSize = 10F
 
         val lineData = LineData(lineDataSet1, lineDataSet2)
         lineChart.data = lineData
         lineChart.invalidate()
+
+        binding.TitleDashboard.text = "Temperature & Humidity"
+
+        binding.blinkTemp.setOnClickListener{
+            if(toggleTemp == 1){
+                val lineData = LineData(lineDataSet2)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleTemp = 0
+                binding.TitleDashboard.text = "Humidity"
+            }else if(toggleHum == 1){
+                val lineData = LineData(lineDataSet1, lineDataSet2)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleTemp = 1
+                binding.TitleDashboard.text = "Temperature & Humidity"
+            }else{
+                val lineData = LineData(lineDataSet1)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleTemp = 1
+                binding.TitleDashboard.text = "Temperature"
+
+            }
+
+
+        }
+        binding.blinkHum.setOnClickListener{
+            if(toggleHum == 1){
+                val lineData = LineData(lineDataSet1)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleHum = 0
+                binding.TitleDashboard.text = "Temperature"
+            }else if(toggleTemp == 1){
+                val lineData = LineData(lineDataSet1, lineDataSet2)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleHum = 1
+                binding.TitleDashboard.text = "Temperature & Humidity"
+            }else{
+                val lineData = LineData(lineDataSet2)
+                lineChart.data = lineData
+                lineChart.invalidate()
+                toggleHum = 1
+                binding.TitleDashboard.text = "Humidity"
+            }
+        }
+
     }
 }
