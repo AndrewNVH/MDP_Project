@@ -66,10 +66,10 @@ class SettingsFragment : Fragment() {
                     1 -> "in"
                     else -> "en"
                 }
-                if (language != getCurrentLanguage())
-                    setLocale(language)
 //                    Log.d("language", language)
 //                    Log.d("locale", getCurrentLanguage())
+                if (language != getCurrentLanguage())
+                    setLocale(language)
                 }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
