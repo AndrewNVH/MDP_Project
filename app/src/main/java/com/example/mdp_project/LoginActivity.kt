@@ -15,14 +15,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
     private val languageChangeReceiver = object : BroadcastReceiver() {
-                override fun onReceive(
-            context: Context?,
-            intent: Intent?
+                override fun onReceive(context: Context?, intent: Intent?
         ) {
-                    Log.d("LanguageChangeReceiver", "onReceive")
             intent?.let {
                 if (it.action == "com.example.ACTION_LANGUAGE_CHANGED") {
-                    Log.d("LanguageChangeReceiver", "Language changed")
                     val languageCode = it.getStringExtra("languageCode")
                     val locale = Locale(languageCode!!)
                     Locale.setDefault(locale)
@@ -31,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
                     configuration.setLocale(locale)
                     resources.updateConfiguration(configuration, resources.displayMetrics)
 
-                    // Restart activity to apply language change
                     recreate()
                 }
             }
@@ -39,14 +34,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        Log.d("LanguageChangeReceiver", "onResume")
         super.onResume()
         registerReceiver(languageChangeReceiver, IntentFilter("com.example.ACTION_LANGUAGE_CHANGED"))
     }
 
     override fun onPause() {
-        Log.d("LanguageChangeReceiver", "onPause")
         super.onPause()
-        unregisterReceiver(languageChangeReceiver)
     }
 }
