@@ -8,6 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MemberListAdapter(val data:ArrayList<MemberList>) : RecyclerView.Adapter<MemberListAdapter.viewHolder>() {
+    class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val memberName: TextView = itemView.findViewById(R.id.memberName)
+        val memberGroup:TextView = itemView.findViewById(R.id.memberGroup)
+        val groupLogo:ImageView = itemView.findViewById(R.id.imageView2)
+
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,10 +34,5 @@ class MemberListAdapter(val data:ArrayList<MemberList>) : RecyclerView.Adapter<M
         return data.size
     }
 
-    class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val memberName: TextView = itemView.findViewById(R.id.memberName)
-        val memberGroup:TextView = itemView.findViewById(R.id.memberGroup)
-        val groupLogo:ImageView = itemView.findViewById(R.id.imageView2)
 
-    }
 }
