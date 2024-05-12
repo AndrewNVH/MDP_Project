@@ -42,31 +42,31 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-//            val user = userList.find { it.userName == usernameInput }
-//            if (user == null){
-//                binding.usernameInput.error = "User not found"
-//                return@setOnClickListener
-//            }
-//
-//            if (user.password != passwordInput){
-//                binding.passwordInput.error = "Wrong password"
-//                return@setOnClickListener
-//            }
-//
-//            // Masuk
-//            val intent = Intent(activity, MainActivity::class.java)
-//            startActivity(intent)
-
-            for(i in username.indices){
-                if(usernameInput == username[i] && passwordInput == password[i]){
-                    binding.usernameInput.text.clear()
-                    binding.passwordInput.text.clear()
-                    val intent = Intent(activity, MainActivity::class.java)
-                    startActivity(intent)
-//                    val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-//                    findNavController().navigate(action)
-                }
+            val user = userList.find { it.userName == usernameInput }
+            if (user == null){
+                binding.usernameInput.error = "User not found"
+                return@setOnClickListener
             }
+
+            if (user.password != passwordInput){
+                binding.passwordInput.error = "Wrong password"
+                return@setOnClickListener
+            }
+            binding.usernameInput.text.clear()
+            binding.passwordInput.text.clear()
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+
+//            for(i in username.indices){
+//                if(usernameInput == username[i] && passwordInput == password[i]){
+//                    binding.usernameInput.text.clear()
+//                    binding.passwordInput.text.clear()
+//                    val intent = Intent(activity, MainActivity::class.java)
+//                    startActivity(intent)
+////                    val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+////                    findNavController().navigate(action)
+//                }
+//            }
 
 
         }
