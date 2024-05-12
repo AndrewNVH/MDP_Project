@@ -58,4 +58,8 @@
     <string name="loginpage_password">Kata sandi</string>
     <string name="loginpage_button">Masuk</string>
     <string name="dasboard">PAPAN?</string>
+    <string name="member">Anggota</string>
+    <string name="albert">菅原咲月推し</string>
+    <string name="andrew">andrew</string>
+    <string name="peng">Steven</string>
 </resources>

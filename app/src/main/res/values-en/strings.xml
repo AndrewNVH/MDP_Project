@@ -58,4 +58,8 @@
     <string name="loginpage_password">Password</string>
     <string name="loginpage_button">Login</string>
     <string name="dasboard">Dashboard</string>
+    <string name="member">Member</string>
+    <string name="albert">菅原咲月推し</string>
+    <string name="andrew">andrew</string>
+    <string name="peng">Steven</string>
 </resources>
