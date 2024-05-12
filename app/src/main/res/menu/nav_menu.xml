@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/dashboard"
-            android:title="Dashboard" />
+            android:title="@string/dasboard" />
     </group>
     <item
         android:title="">

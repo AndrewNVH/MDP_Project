@@ -1,6 +1,7 @@
 package com.example.mdp_project
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -87,6 +88,9 @@ class SettingsFragment : Fragment() {
         val configuration = resources.configuration
         configuration.setLocale(locale)
         resources.updateConfiguration(configuration, resources.displayMetrics)
+        val intent = Intent("com.example.ACTION_LANGUAGE_CHANGED")
+        intent.putExtra("languageCode", languageCode)
+        requireContext().sendBroadcast(intent)
 
 
         requireActivity().recreate()

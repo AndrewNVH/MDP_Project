@@ -57,4 +57,5 @@
     <string name="loginpage_name">Username</string>
     <string name="loginpage_password">Password</string>
     <string name="loginpage_button">Login</string>
+    <string name="dasboard">Dashboard</string>
 </resources>

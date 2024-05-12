@@ -57,4 +57,5 @@
     <string name="loginpage_name">Nama</string>
     <string name="loginpage_password">Kata sandi</string>
     <string name="loginpage_button">Masuk</string>
+    <string name="dasboard">PAPAN?</string>
 </resources>
