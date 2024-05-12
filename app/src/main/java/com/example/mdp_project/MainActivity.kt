@@ -27,14 +27,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        Handler().postDelayed({
-//            val intent = Intent(this@MainActivity, Start::class.java)
-//            startActivity(intent)
-//            finish()
-//            },1800)
 
 
-        // ALBERT
+
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -51,7 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-        // END ALBERT
+
 
     }
     override fun onDestroy() {
