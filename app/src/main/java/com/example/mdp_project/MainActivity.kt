@@ -1,6 +1,8 @@
 package com.example.mdp_project
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+//        Handler().postDelayed({
+//            val intent = Intent(this@MainActivity, Start::class.java)
+//            startActivity(intent)
+//            finish()
+//        },1800)
 
 
 
