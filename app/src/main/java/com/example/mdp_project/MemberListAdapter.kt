@@ -7,11 +7,30 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MemberListAdapter(val data:ArrayList<MemberList>) : RecyclerView.Adapter<MemberListAdapter.viewHolder>() {
+class MemberListAdapter(val data:ArrayList<MemberList>, private val listener: OnItemClickListener) : RecyclerView.Adapter<MemberListAdapter.viewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
     class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(item: String, position: Int, listener: OnItemClickListener) {
+            itemView.setOnClickListener {
+                listener.onItemClick(position)
+            }
+        }
         val memberName: TextView = itemView.findViewById(R.id.memberName)
         val memberGroup:TextView = itemView.findViewById(R.id.memberGroup)
         val groupLogo:ImageView = itemView.findViewById(R.id.imageView2)
+//        init {
+//            itemView.setOnClickListener {
+//                val position:Int = adapterPosition
+//                if (position != RecyclerView.NO_POSITION) {
+//
+//                }
+//            }
+//
+//        }
 
     }
 
@@ -24,6 +43,7 @@ class MemberListAdapter(val data:ArrayList<MemberList>) : RecyclerView.Adapter<M
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
+        holder.bind(data[position].toString(), position, listener)
         val member = data[position]
         holder.memberName.text = member.memberName
         holder.memberGroup.text = member.memberGroup

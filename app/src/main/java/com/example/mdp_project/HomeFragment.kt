@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mdp_project.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
     lateinit var binding: FragmentHomeBinding
+    val memberList: ArrayList<MemberList> = MockDB.member
     val groupLogo = intArrayOf(
         R.drawable.nogizaka46,
         R.drawable.sakurazaka46,
@@ -27,7 +29,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Access views using the binding object
-        val memberList: ArrayList<MemberList> = MockDB.member
+
         val memberName = resources.getStringArray(R.array.memberNameList)
         val memberGroup = resources.getStringArray(R.array.memberGroupList)
         if (memberList.size != memberGroup.size) {
@@ -45,7 +47,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        val memberAdapter = MemberListAdapter(memberList)
+        val memberAdapter = MemberListAdapter(memberList, this)
 
         binding.memberList.text = getString(R.string.memberList)
         binding.memberRv.adapter = memberAdapter
@@ -55,4 +57,13 @@ class HomeFragment : Fragment() {
 
 
     }
+
+    override fun onItemClick(position: Int) {
+        // Handle item click
+        val clickedItem = memberList[position]
+//        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+//        findNavController().navigate(R.id.action_homeFragment_to_DeviceInfoFragment)
+        Toast.makeText(requireContext(), "Clicked: $clickedItem", Toast.LENGTH_SHORT).show()
+    }
+
 }

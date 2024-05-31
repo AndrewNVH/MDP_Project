@@ -19,7 +19,16 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mdp_project.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_DeviceInfoFragment"
+            app:destination="@id/deviceInfoFragment" />
+        <fragment
+            android:id="@+id/deviceInfoFragment"
+            android:name="com.example.mdp_project.DeviceInfoFragment"
+            android:label="fragment_device_info"
+            tools:layout="@layout/fragment_device_info" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mdp_project.LoginFragment"
@@ -53,4 +62,5 @@
     <action
         android:id="@+id/action_global_shareFragment"
         app:destination="@id/shareFragment" />
+
 </navigation>
