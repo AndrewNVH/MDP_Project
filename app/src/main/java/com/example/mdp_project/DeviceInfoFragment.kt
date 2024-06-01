@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mdp_project.databinding.FragmentDeviceInfoBinding
 
@@ -32,11 +33,12 @@ class DeviceInfoFragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
+                Toast.makeText(requireContext(), "SeekBar touched!", Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
+                Toast.makeText(requireContext(), "SeekBar touched!", Toast.LENGTH_SHORT).show()
             }
         })
     }
