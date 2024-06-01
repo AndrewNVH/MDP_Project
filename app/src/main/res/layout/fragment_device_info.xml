@@ -40,6 +40,8 @@
         android:layout_width="240dp"
         android:layout_height="23dp"
         android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/seekBarValue"
         app:layout_constraintHorizontal_bias="0.5"

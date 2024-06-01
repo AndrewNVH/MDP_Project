@@ -61,6 +61,7 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
     override fun onItemClick(position: Int) {
         // Handle item click
         val clickedItem = memberList[position]
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, DeviceInfoFragment()).commit()
 //        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
 //        findNavController().navigate(R.id.action_homeFragment_to_DeviceInfoFragment)
         Toast.makeText(requireContext(), "Clicked: $clickedItem", Toast.LENGTH_SHORT).show()
