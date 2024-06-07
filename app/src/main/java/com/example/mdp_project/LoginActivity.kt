@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
                     val configuration = resources.configuration
                     configuration.setLocale(locale)
                     resources.updateConfiguration(configuration, resources.displayMetrics)
-
                     recreate()
                 }
             }
@@ -35,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        registerReceiver(languageChangeReceiver, IntentFilter("com.example.ACTION_LANGUAGE_CHANGED"))
+//        registerReceiver(languageChangeReceiver, IntentFilter("com.example.ACTION_LANGUAGE_CHANGED"))
     }
 
     override fun onPause() {
