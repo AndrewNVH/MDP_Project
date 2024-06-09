@@ -27,12 +27,12 @@ class LoginFragment : Fragment() {
         val userList : ArrayList<UserList> = MockDB.user
         val username = resources.getStringArray(R.array.username)
         val password = resources.getStringArray(R.array.password)
+
         for(i in username.indices){
             userList.add(UserList(username[i], password[i]))
         }
 
-
-        binding.loginButton.setOnClickListener{
+        binding.btnLogin.setOnClickListener{
             val usernameInput = binding.usernameInput.text.toString()
             val passwordInput = binding.passwordInput.text.toString()
             if(usernameInput.isEmpty()){
