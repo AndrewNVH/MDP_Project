@@ -13,13 +13,13 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
     val mainScope = CoroutineScope(Dispatchers.Main)
 
     suspend fun RegisterList(username: String, password: String, cPassword:String) {
-        if (username == "" || password == "" || cPassword == "") {
-            Toast.makeText(getApplication(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
-//            return "Please fill in all fields"
-        }
-        if (password != cPassword) {
-            Toast.makeText(getApplication(), "Passwords do not match", Toast.LENGTH_SHORT).show()
-//            return "Passwords do not match"
-        }
+//        if (username == "" || password == "" || cPassword == "") {
+//            Toast.makeText(getApplication(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+////            return "Please fill in all fields"
+//        }
+//        if (password != cPassword) {
+//            Toast.makeText(getApplication(), "Passwords do not match", Toast.LENGTH_SHORT).show()
+////            return "Passwords do not match"
+//        }
     }
 }
