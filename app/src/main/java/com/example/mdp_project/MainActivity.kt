@@ -76,16 +76,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://localhost:3306/exampledb",
-                "trial",
+                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "trial2",
                 "trial"
             )
-
+            Log.d("Database", "Connected to MariaDB")
             // Create a statement
             val stmt: Statement = conn.createStatement()
 
             // Execute a query
-            val rs: ResultSet = stmt.executeQuery("SELECT * FROM mdptest1")
+            val rs: ResultSet = stmt.executeQuery("SELECT * FROM userlist")
 
             // Process the result set
             while (rs.next()) {
