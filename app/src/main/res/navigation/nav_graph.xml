@@ -27,7 +27,8 @@
             tools:layout="@layout/fragment_device_info" />
         <action
             android:id="@+id/action_homeFragment_to_infoFragment"
-            app:destination="@id/infoFragment" />
+            app:destination="@id/infoFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
