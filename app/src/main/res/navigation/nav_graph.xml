@@ -20,11 +20,6 @@
         android:name="com.example.mdp_project.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <fragment
-            android:id="@+id/deviceInfoFragment"
-            android:name="com.example.mdp_project.DeviceInfoFragment"
-            android:label="fragment_device_info"
-            tools:layout="@layout/fragment_device_info" />
         <action
             android:id="@+id/action_homeFragment_to_infoFragment"
             app:destination="@id/infoFragment"
@@ -67,7 +62,11 @@
         android:id="@+id/infoFragment"
         android:name="com.example.mdp_project.InfoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_infoFragment"
         app:destination="@id/infoFragment" />
