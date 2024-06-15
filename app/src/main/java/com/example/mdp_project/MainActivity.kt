@@ -3,6 +3,7 @@ package com.example.mdp_project
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.mdp_project.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.*
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.ResultSet
+import java.sql.Statement
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -29,7 +35,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        GlobalScope.launch(Dispatchers.IO) {
+            val result = fetchDatabaseUserData()
+            withContext(Dispatchers.Main) {
+                Log.d("Database", result);
 
+            }
+        }
 //        Handler().postDelayed({
 //            val intent = Intent(this@MainActivity, Start::class.java)
 //            startActivity(intent)
@@ -55,6 +67,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
+    }
+    private suspend fun fetchDatabaseUserData(): String {
+        var result = ""
+        try {
+            // Load the MariaDB JDBC driver
+            Class.forName("org.mariadb.jdbc.Driver")
+
+            // Establish a connection to the database
+            val conn: Connection = DriverManager.getConnection(
+                "jdbc:mariadb://localhost:3306/exampledb",
+                "trial",
+                "trial"
+            )
+
+            // Create a statement
+            val stmt: Statement = conn.createStatement()
+
+            // Execute a query
+            val rs: ResultSet = stmt.executeQuery("SELECT * FROM mdptest1")
+
+            // Process the result set
+            while (rs.next()) {
+                val user = rs.getString("user") + "\n"
+                val password = rs.getString("pass") + "\n"
+                result += "Username: $user, Password: $password\n"
+            }
+
+            // Close the connection
+            conn.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            result = "Error: ${e.message}"
+        }
+        return result
     }
     override fun onDestroy() {
         super.onDestroy()
