@@ -16,6 +16,7 @@ import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.Statement
 import java.util.Locale
+import android.os.Handler
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
     }
+
+
     private val languageChangeReceiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context?, intent: Intent?
         ) {

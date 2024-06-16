@@ -50,6 +50,10 @@ android {
 }
 
 dependencies {
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
