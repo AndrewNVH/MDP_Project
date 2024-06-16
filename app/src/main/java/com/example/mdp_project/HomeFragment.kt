@@ -13,6 +13,7 @@ import com.example.mdp_project.databinding.FragmentHomeBinding
 class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
     lateinit var binding: FragmentHomeBinding
     val memberList: ArrayList<MemberList> = MockDB.member
+
     val groupLogo = intArrayOf(
         R.drawable.nogizaka46,
         R.drawable.sakurazaka46,
@@ -30,21 +31,22 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
         super.onViewCreated(view, savedInstanceState)
         // Access views using the binding object
 
-        val memberName = resources.getStringArray(R.array.memberNameList)
-        val memberGroup = resources.getStringArray(R.array.memberGroupList)
-        if (memberList.size != memberGroup.size) {
-            for (i in memberName.indices) {
-                if (memberGroup[i] == "Nogizaka46"||memberGroup[i] == "乃木坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[0]))
-                }
-                if (memberGroup[i] == "Sakurazaka46"||memberGroup[i] == "櫻坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[1]))
-                }
-                if (memberGroup[i] == "Hinatazaka46"||memberGroup[i] == "日向坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[2]))
-                }
-            }
-        }
+        // Access from String.h ... not needed... uncomment unless you use database
+//        val memberName = resources.getStringArray(R.array.memberNameList)
+//        val memberGroup = resources.getStringArray(R.array.memberGroupList)
+//        if (memberList.size != memberGroup.size) {
+//            for (i in memberName.indices) {
+//                if (memberGroup[i] == "Nogizaka46"||memberGroup[i] == "乃木坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[0]))
+//                }
+//                if (memberGroup[i] == "Sakurazaka46"||memberGroup[i] == "櫻坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[1]))
+//                }
+//                if (memberGroup[i] == "Hinatazaka46"||memberGroup[i] == "日向坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[2]))
+//                }
+//            }
+//        }
 
 
         val memberAdapter = MemberListAdapter(memberList, this)
@@ -58,9 +60,14 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
 
     }
 
+
     override fun onItemClick(position: Int) {
         // Handle item click
         val clickedItem = memberList[position]
+        val infofragment = InfoFragment()
+        val bundle = Bundle()
+        bundle.putString("key", position.toString())
+        infofragment.arguments = bundle
         parentFragmentManager.beginTransaction().replace(R.id.fragment_container, InfoFragment()).commit()
 //        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
 //        findNavController().navigate(R.id.action_homeFragment_to_infoFragment)

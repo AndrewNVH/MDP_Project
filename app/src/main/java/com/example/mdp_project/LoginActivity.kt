@@ -24,16 +24,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // Initialize the database connection and take usernames and passwords from the database
-        GlobalScope.launch(Dispatchers.IO) {
-            val User = Utils.getFromSql("userlist", "user")
-            val Pass = Utils.getFromSql("userlist", "pass")
-            withContext(Dispatchers.Main) {
-                for(i in User.indices){
-                    MockDB.user.add(UserList(User[i].toString(), Pass[i].toString()))
-                }
-
-            }
-        }
 
 
     }

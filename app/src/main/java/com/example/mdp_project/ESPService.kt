@@ -19,20 +19,28 @@ interface ESPService {
     @GET("mati")
     suspend fun ledOff():EspResponse
 
-    @GET("blink")
-    suspend fun ledBlink(@Query("n") times:Int):EspResponse
+    @GET("brightness")
+    suspend fun ledBrightness(@Query("brightness") brightness:Int):EspResponse
 }
 
-object API{
-    val moshi = Moshi.Builder()
+object API {
+    private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
-    val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        // 192.168.43.<2-254>
-        .baseUrl("http://10.10.2.127")
-        .build()
-    val retrofitService:ESPService by lazy {
-        retrofit.create(ESPService::class.java)
+
+    private var retrofit: Retrofit? = null
+
+    // Method to configure Retrofit with a provided base URL
+    fun configureRetrofit(baseUrl: String) {
+        retrofit = Retrofit.Builder()
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .baseUrl(baseUrl)
+            .build()
+    }
+
+    // Lazy initialization of retrofitService, reconfigured when baseUrl changes
+    val retrofitService: ESPService by lazy {
+        retrofit ?: throw IllegalStateException("Retrofit not configured. Call configureRetrofit(baseUrl) first.")
+        retrofit!!.create(ESPService::class.java)
     }
 }

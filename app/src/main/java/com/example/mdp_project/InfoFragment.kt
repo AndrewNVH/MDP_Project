@@ -12,9 +12,14 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mdp_project.databinding.FragmentInfoBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class InfoFragment : Fragment() {
+    val ioScope = CoroutineScope(Dispatchers.IO)
+    val mainScope = CoroutineScope(Dispatchers.Main)
     lateinit var binding: FragmentInfoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +52,12 @@ class InfoFragment : Fragment() {
         binding.seekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 binding.seekBarValue.text = p1.toString()
-
+                ioScope.launch {
+                    val deviceIpAddress = "http://10.10.2.127"
+                    API.configureRetrofit(deviceIpAddress)
+                    val brightness = p1
+                    API.retrofitService.ledBrightness(brightness)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

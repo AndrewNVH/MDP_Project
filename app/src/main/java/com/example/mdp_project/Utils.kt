@@ -7,9 +7,9 @@ import java.sql.ResultSet
 import java.sql.Statement
 
 object Utils {
-    fun getFromSql(tableName: String, columnName: String, filter: String? = null): String {
-        val sql = "SELECT $columnName FROM $tableName $filter"
-        var result = ""
+    fun getFromSql(tableName: String, columnName: String, filter: String? = null): ArrayList<String> {
+        val sql = if (filter == null) "SELECT $columnName FROM $tableName" else "SELECT $columnName FROM $tableName $filter"
+        var result = ArrayList<String>()
         try {
             // Load the MariaDB JDBC driver
             Class.forName("org.mariadb.jdbc.Driver")
@@ -29,14 +29,17 @@ object Utils {
 
             // Process the result set
             while (rs.next()) {
-                result += rs.getString(columnName)
+                result.add(rs.getString(columnName))
+
             }
+            Log.d("Database", "Result: $result")
 
             // Close the connection
             conn.close()
         } catch (e: Exception) {
             e.printStackTrace()
-            result = "Error: ${e.message}"
+//            result = "Error: ${e.message}"
+            Log.d("Database", "Error: ${e.message}")
         }
         return result
     }
