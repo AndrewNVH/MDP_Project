@@ -10,6 +10,7 @@ import com.example.mdp_project.databinding.FragmentRegisterBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
@@ -36,6 +37,29 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnRegisterR.setOnClickListener{
+            val username = binding.etUsernamerR.text.toString()
+            val password = binding.etPasswordR.text.toString()
+            val cpassword = binding.etCPasswordR.text.toString()
+            if(username.isNotEmpty() && password.isNotEmpty() && cpassword.isNotEmpty()){
+                if(password == cpassword){
+                    ioScope.launch {
+                        Utils.sendUserToSql(username, password)
+                        mainScope.launch{
+                            findNavController().popBackStack()
+                        }
+                    }
+                }
+            }
+            else{
+                Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnLoginR.setOnClickListener{
+            findNavController().popBackStack()
+        }
 
 //        vm = ViewModelProvider(this).get(RegisterViewModel::class.java)
 

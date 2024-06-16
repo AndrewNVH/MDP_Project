@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.mdp_project.databinding.FragmentLoginBinding
 
 
@@ -75,6 +76,13 @@ class LoginFragment : Fragment() {
 
 
         }
+
+
+        binding.btnReg.setOnClickListener{
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
 }

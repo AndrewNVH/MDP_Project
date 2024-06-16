@@ -69,4 +69,31 @@ object Utils {
             e.printStackTrace()
         }
     }
+
+    fun sendUserToSql(user: String, pass: String){
+        val sql = "INSERT INTO userlist VALUES ('$user', '$pass')"
+        try {
+            // Load the MariaDB JDBC driver
+            Class.forName("org.mariadb.jdbc.Driver")
+
+            // Establish a connection to the database
+            val conn: Connection = DriverManager.getConnection(
+                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "trial2",
+                "trial"
+            )
+            Log.d("Database", "Connected to MariaDB")
+            // Create a statement
+            val stmt: Statement = conn.createStatement()
+
+            // Execute a query
+            stmt.executeUpdate(sql)
+
+            // Close the connection
+            conn.close()
+            MockDB.user.add(UserList(user, pass))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

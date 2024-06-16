@@ -29,7 +29,11 @@
         android:id="@+id/loginFragment"
         android:name="com.example.mdp_project.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.mdp_project.SettingsFragment"
@@ -70,5 +74,10 @@
     <action
         android:id="@+id/action_global_infoFragment"
         app:destination="@id/infoFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.mdp_project.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 
 </navigation>

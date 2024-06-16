@@ -47,7 +47,7 @@ class MemberListAdapter(val data:ArrayList<MemberList>, private val listener: On
         val member = data[position]
         holder.memberName.text = member.memberName
         holder.memberGroup.text = member.memberGroup
-        holder.groupLogo.setImageResource(member.logo)
+//        holder.groupLogo.setImageResource(member.logo)
     }
 
     override fun getItemCount(): Int {

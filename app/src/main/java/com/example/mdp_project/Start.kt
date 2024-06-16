@@ -32,12 +32,12 @@ class Start : AppCompatActivity() {
             val deviceType = Utils.getFromSql("devicelist", "deviceType")
             withContext(Dispatchers.Main) {
                 for(i in User.indices){
-                    MockDB.user.add(UserList(User[i].toString(), Pass[i].toString()))
+                    MockDB.user.add(UserList(User[i], Pass[i]))
                 }
                 for(i in deviceId.indices){
                     MockDB.member.add(MemberList(deviceId[i].toString(), deviceName[i].toString(), deviceType[i].toString()))
                 }
-//                Log.d("User", MockDB.user.toString())
+                Log.d("User", MockDB.user.toString())
 
 
             }
