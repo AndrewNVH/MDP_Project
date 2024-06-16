@@ -7,8 +7,8 @@ import java.sql.ResultSet
 import java.sql.Statement
 
 object Utils {
-    fun getFromSql(tableName: String, columnName: String): String {
-        val sql = "SELECT $columnName FROM $tableName"
+    fun getFromSql(tableName: String, columnName: String, filter: String? = null): String {
+        val sql = "SELECT $columnName FROM $tableName $filter"
         var result = ""
         try {
             // Load the MariaDB JDBC driver
