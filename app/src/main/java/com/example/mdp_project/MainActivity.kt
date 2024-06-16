@@ -35,13 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        GlobalScope.launch(Dispatchers.IO) {
-            val result = fetchDatabaseUserData()
-            withContext(Dispatchers.Main) {
-                Log.d("Database", result);
 
-            }
-        }
 //        Handler().postDelayed({
 //            val intent = Intent(this@MainActivity, Start::class.java)
 //            startActivity(intent)
@@ -68,40 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
-    private suspend fun fetchDatabaseUserData(): String {
-        var result = ""
-        try {
-            // Load the MariaDB JDBC driver
-            Class.forName("org.mariadb.jdbc.Driver")
 
-            // Establish a connection to the database
-            val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
-                "trial2",
-                "trial"
-            )
-            Log.d("Database", "Connected to MariaDB")
-            // Create a statement
-            val stmt: Statement = conn.createStatement()
-
-            // Execute a query
-            val rs: ResultSet = stmt.executeQuery("SELECT * FROM userlist")
-
-            // Process the result set
-            while (rs.next()) {
-                val user = rs.getString("user") + "\n"
-                val password = rs.getString("pass") + "\n"
-                result += "Username: $user, Password: $password\n"
-            }
-
-            // Close the connection
-            conn.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            result = "Error: ${e.message}"
-        }
-        return result
-    }
     override fun onDestroy() {
         super.onDestroy()
         }
