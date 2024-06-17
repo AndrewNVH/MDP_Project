@@ -78,7 +78,7 @@ object Utils {
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "jdbc:mariadb://localhost:3306/exampledb",
                 "trial2",
                 "trial"
             )
