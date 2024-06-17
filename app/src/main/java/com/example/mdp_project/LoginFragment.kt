@@ -28,12 +28,12 @@ class LoginFragment : Fragment() {
         val userList : ArrayList<UserList> = MockDB.user
 
         // Takes Data from String.h ... uncomment the section below to test unless you use the database
-//        val username = resources.getStringArray(R.array.username)
-//        val password = resources.getStringArray(R.array.password)
-//
-//        for(i in username.indices){
-//            userList.add(UserList(username[i], password[i]))
-//        }
+        val username = resources.getStringArray(R.array.username)
+        val password = resources.getStringArray(R.array.password)
+
+        for(i in username.indices){
+            userList.add(UserList(username[i], password[i]))
+        }
 
 
         binding.btnLogin.setOnClickListener{
@@ -79,6 +79,8 @@ class LoginFragment : Fragment() {
 
 
         binding.btnReg.setOnClickListener{
+            binding.usernameInput.text.clear()
+            binding.passwordInput.text.clear()
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             findNavController().navigate(action)
         }

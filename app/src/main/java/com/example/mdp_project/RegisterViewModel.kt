@@ -11,15 +11,25 @@ import android.widget.Toast
 class RegisterViewModel(application: Application): AndroidViewModel(application) {
     val ioScope = CoroutineScope(Dispatchers.IO)
     val mainScope = CoroutineScope(Dispatchers.Main)
+    val array_user: ArrayList<UserList> = MockDB.user
 
-    suspend fun RegisterList(username: String, password: String, cPassword:String) {
-//        if (username == "" || password == "" || cPassword == "") {
+    suspend fun registerList(username: String, password: String, cPassword:String):String {
+        if (username == "" || password == "" || cPassword == "") {
 //            Toast.makeText(getApplication(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
-////            return "Please fill in all fields"
-//        }
-//        if (password != cPassword) {
+            return "Please fill in all fields"
+        }
+        for (user in array_user) { //
+            if (user.userName == username) {
+//                Toast.makeText(getApplication(), "Username already exists", Toast.LENGTH_SHORT).show()
+                return "Username already exists"
+            }
+        }
+        if (password != cPassword) {
 //            Toast.makeText(getApplication(), "Passwords do not match", Toast.LENGTH_SHORT).show()
-////            return "Passwords do not match"
-//        }
+            return "Passwords do not match"
+        }
+        MockDB.user.add(UserList(username, password))
+        Utils.sendUserToSql(username, password)
+        return "Register Successful"
     }
 }

@@ -37,24 +37,43 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
         binding.btnRegisterR.setOnClickListener{
             val username = binding.etUsernamerR.text.toString()
             val password = binding.etPasswordR.text.toString()
             val cpassword = binding.etCPasswordR.text.toString()
-            if(username.isNotEmpty() && password.isNotEmpty() && cpassword.isNotEmpty()){
-                if(password == cpassword){
-                    ioScope.launch {
-                        Utils.sendUserToSql(username, password)
-                        mainScope.launch{
+            ioScope.launch {
+               val msg = vm.registerList(username, password, cpassword)
+                    mainScope.launch {
+                        binding.etUsernamerR.setText("")
+                        binding.etPasswordR.setText("")
+                        binding.etCPasswordR.setText("")
+                        if(msg == "Register Successful"){
+                            Toast.makeText(requireContext(), "Register Success", Toast.LENGTH_SHORT).show()
                             findNavController().popBackStack()
+                        }else if(msg == "Passwords do not match"){
+                            Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT).show()
+                        }else if(msg == "Username already exists"){
+                            Toast.makeText(requireContext(), "Username already exists", Toast.LENGTH_SHORT).show()
+                        }else if(msg == "Please fill in all fields"){
+                            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
                         }
-                    }
                 }
             }
-            else{
-                Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            }
+//            if(username.isNotEmpty() && password.isNotEmpty() && cpassword.isNotEmpty()){
+//                if(password == cpassword){
+//                    ioScope.launch {
+//                        Utils.sendUserToSql(username, password)
+//                        mainScope.launch{
+//                            findNavController().popBackStack()
+//                        }
+//                    }
+//                }
+//            }
+//            else{
+//                Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+//            }
         }
 
         binding.btnLoginR.setOnClickListener{
