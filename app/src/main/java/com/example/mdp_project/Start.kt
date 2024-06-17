@@ -24,24 +24,24 @@ class Start : AppCompatActivity() {
 //        val splashGif = findViewById<ImageView>(R.id.splashGif)
 //        Glide.with(this).asGif().load(R.drawable.openingbackground).into(splashGif)
 
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val User = Utils.getFromSql("userlist", "user")
-//            val Pass = Utils.getFromSql("userlist", "pass")
-//            val deviceId = Utils.getFromSql("devicelist", "deviceId")
-//            val deviceName = Utils.getFromSql("devicelist", "deviceName")
-//            val deviceType = Utils.getFromSql("devicelist", "deviceType")
-//            withContext(Dispatchers.Main) {
-//                for(i in User.indices){
-//                    MockDB.user.add(UserList(User[i], Pass[i]))
-//                }
-//                for(i in deviceId.indices){
-//                    MockDB.member.add(MemberList(deviceId[i].toString(), deviceName[i].toString(), deviceType[i].toString()))
-//                }
-//                Log.d("User", MockDB.user.toString())
-//
-//
-//            }
-//        }
+        GlobalScope.launch(Dispatchers.IO) {
+            val User = Utils.getFromSql("userlist", "user")
+            val Pass = Utils.getFromSql("userlist", "pass")
+            val deviceId = Utils.getFromSql("devicelist", "deviceId")
+            val deviceName = Utils.getFromSql("devicelist", "deviceName")
+            val deviceType = Utils.getFromSql("devicelist", "deviceType")
+            withContext(Dispatchers.Main) {
+                for(i in User.indices){
+                    MockDB.user.add(UserList(User[i], Pass[i]))
+                }
+                for(i in deviceId.indices){
+                    MockDB.member.add(MemberList(deviceId[i].toString(), deviceName[i].toString(), deviceType[i].toString()))
+                }
+                Log.d("User", MockDB.user.toString())
+
+
+            }
+        }
         Handler().postDelayed({
             val intent = Intent(this@Start, LoginActivity::class.java)
             startActivity(intent)

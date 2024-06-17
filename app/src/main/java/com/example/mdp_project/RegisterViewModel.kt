@@ -28,7 +28,7 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
 //            Toast.makeText(getApplication(), "Passwords do not match", Toast.LENGTH_SHORT).show()
             return "Passwords do not match"
         }
-        MockDB.user.add(UserList(username, password))
+//        MockDB.user.add(UserList(username, password))
         Utils.sendUserToSql(username, password)
         return "Register Successful"
     }

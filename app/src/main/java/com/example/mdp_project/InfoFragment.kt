@@ -1,16 +1,14 @@
 package com.example.mdp_project
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mdp_project.databinding.FragmentInfoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +36,16 @@ class InfoFragment : Fragment() {
             }
         })
 
+        val data = arguments?.getString("key")
+        Log.d("data", data.toString())
+        val position = data?.toInt()
+        val deviceInfo = MockDB.member[position!!]
+        Log.d("deviceName", deviceInfo.toString())
+        Log.d("deviceName", deviceInfo.memberName)
+
+        binding.deviceName.setText(deviceInfo.memberName)
+
+
 
 
         binding.btnBack.setOnClickListener {
@@ -53,10 +61,9 @@ class InfoFragment : Fragment() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 binding.seekBarValue.text = p1.toString()
                 ioScope.launch {
-                    val deviceIpAddress = "http://10.10.2.127"
+                    val deviceIpAddress = "http://" + binding.deviceIpAdd.text.toString()
                     API.configureRetrofit(deviceIpAddress)
-                    val brightness = p1
-                    API.retrofitService.ledBrightness(brightness)
+                    API.retrofitService.ledBrightness(p1)
                 }
             }
 

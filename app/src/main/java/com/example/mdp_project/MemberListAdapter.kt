@@ -46,7 +46,7 @@ class MemberListAdapter(val data:ArrayList<MemberList>, private val listener: On
         holder.bind(data[position].toString(), position, listener)
         val member = data[position]
         holder.memberName.text = member.memberName
-        holder.memberGroup.text = member.memberGroup
+        holder.memberGroup.text = member.deviceType
 //        holder.groupLogo.setImageResource(member.logo)
     }
 

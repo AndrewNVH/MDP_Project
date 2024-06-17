@@ -32,21 +32,21 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
         // Access views using the binding object
 
         // Access from String.h ... not needed... uncomment unless you use database
-        val memberName = resources.getStringArray(R.array.memberNameList)
-        val memberGroup = resources.getStringArray(R.array.memberGroupList)
-        if (memberList.size != memberGroup.size) {
-            for (i in memberName.indices) {
-                if (memberGroup[i] == "Nogizaka46"||memberGroup[i] == "乃木坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[0]))
-                }
-                if (memberGroup[i] == "Sakurazaka46"||memberGroup[i] == "櫻坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[1]))
-                }
-                if (memberGroup[i] == "Hinatazaka46"||memberGroup[i] == "日向坂46") {
-                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[2]))
-                }
-            }
-        }
+//        val memberName = resources.getStringArray(R.array.memberNameList)
+//        val memberGroup = resources.getStringArray(R.array.memberGroupList)
+//        if (memberList.size != memberGroup.size) {
+//            for (i in memberName.indices) {
+//                if (memberGroup[i] == "Nogizaka46"||memberGroup[i] == "乃木坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[0]))
+//                }
+//                if (memberGroup[i] == "Sakurazaka46"||memberGroup[i] == "櫻坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[1]))
+//                }
+//                if (memberGroup[i] == "Hinatazaka46"||memberGroup[i] == "日向坂46") {
+//                    memberList.add(MemberList(memberName[i], memberGroup[i], groupLogo[2]))
+//                }
+//            }
+//        }
 
 
         val memberAdapter = MemberListAdapter(memberList, this)
@@ -64,11 +64,11 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
     override fun onItemClick(position: Int) {
         // Handle item click
         val clickedItem = memberList[position]
-        val infofragment = InfoFragment()
+        val infoFragment = InfoFragment()
         val bundle = Bundle()
         bundle.putString("key", position.toString())
-        infofragment.arguments = bundle
-        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, InfoFragment()).commit()
+        infoFragment.arguments = bundle
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, infoFragment).commit()
 //        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
 //        findNavController().navigate(R.id.action_homeFragment_to_infoFragment)
         Toast.makeText(requireContext(), "Clicked: $clickedItem", Toast.LENGTH_SHORT).show()
