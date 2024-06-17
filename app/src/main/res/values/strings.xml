@@ -2,7 +2,7 @@
     <string name="app_name">MDP_Project</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <string name="memberList">Member List</string>
+    <string name="memberList">Device List</string>
     <string name="language">Language</string>
 
     <string-array name="username">
@@ -64,4 +64,7 @@
     <string name="andrew">Andrew</string>
     <string name="peng">Steven</string>
     <string name="brightness">Brightness</string>
+    <string name="add_device">Add</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="reg">Register</string>
 </resources>

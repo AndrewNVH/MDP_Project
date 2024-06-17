@@ -63,7 +63,7 @@ class InfoFragment : Fragment() {
                 ioScope.launch {
                     val deviceIpAddress = "http://" + binding.deviceIpAdd.text.toString()
                     API.configureRetrofit(deviceIpAddress)
-                    API.retrofitService.ledBrightness(p1)
+                    API.retrofitService.ledBrightness(p1.toString())
                 }
             }
 

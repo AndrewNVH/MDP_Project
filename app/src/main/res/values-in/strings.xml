@@ -2,7 +2,7 @@
     <string name="app_name">MDP_Project</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <string name="memberList">Daftar Member</string>
+    <string name="memberList">Daftar Perangkat</string>
     <string name="language">Bahasa</string>
 
     <string-array name="username">
@@ -64,4 +64,7 @@
     <string name="andrew">Andrew</string>
     <string name="peng">Steven</string>
     <string name="brightness">Kecerahan</string>
+    <string name="add_device">Tambah</string>
+    <string name="confirm_pass">Konfirmasi Kata Sandi</string>
+    <string name="reg">Daftar</string>
 </resources>
