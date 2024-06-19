@@ -67,7 +67,7 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
         val typeSel = clickedItem.deviceType
         val toFragment:Fragment
         when (typeSel){
-//            "sensor" ->
+            "sensor" -> toFragment = SensorFragment()
             "lamp" -> toFragment = InfoFragment()
             "LCD" -> toFragment = LCDFragment()
             else -> toFragment = LCDFragment()
