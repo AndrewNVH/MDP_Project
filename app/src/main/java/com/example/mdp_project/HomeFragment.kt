@@ -64,11 +64,18 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
     override fun onItemClick(position: Int) {
         // Handle item click
         val clickedItem = memberList[position]
-        val infoFragment = InfoFragment()
+        val typeSel = clickedItem.deviceType
+        val toFragment:Fragment
+        when (typeSel){
+//            "sensor" ->
+            "lamp" -> toFragment = InfoFragment()
+            "LCD" -> toFragment = LCDFragment()
+            else -> toFragment = LCDFragment()
+        }
         val bundle = Bundle()
         bundle.putString("key", position.toString())
-        infoFragment.arguments = bundle
-        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, infoFragment).commit()
+        toFragment.arguments = bundle
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, toFragment).commit()
 //        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
 //        findNavController().navigate(R.id.action_homeFragment_to_infoFragment)
         Toast.makeText(requireContext(), "Clicked: $clickedItem", Toast.LENGTH_SHORT).show()

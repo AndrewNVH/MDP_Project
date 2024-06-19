@@ -67,4 +67,5 @@
     <string name="add_device">Add</string>
     <string name="confirm_pass">Confirm Password</string>
     <string name="reg">Register</string>
+    <string name="LCD_Text">Input LCD Text</string>
 </resources>

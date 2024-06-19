@@ -67,4 +67,5 @@
     <string name="add_device">Tambah</string>
     <string name="confirm_pass">Konfirmasi Kata Sandi</string>
     <string name="reg">Daftar</string>
+    <string name="LCD_Text">Masukan Kalimat</string>
 </resources>

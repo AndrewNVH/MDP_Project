@@ -59,7 +59,11 @@ class DashboardFragment : Fragment() {
         yAxis.axisLineColor = resources.getColor(R.color.black)
         yAxis.setLabelCount(10)
 
+        // X Axis
+        val entoriesD = Utils.getFromSql("mdptest1", "date", "WHERE type = 'temperature'")
+
         // Temperature
+        val entories1 = Utils.getFromSql("mdptest1", "value", "WHERE type = 'temperature'")
         val entries1: MutableList<Entry> = mutableListOf()
         entries1.add(Entry(0f, 10f))
         entries1.add(Entry(1f, 10f))
@@ -73,6 +77,7 @@ class DashboardFragment : Fragment() {
         entries1.add(Entry(9f, 30f))
 
         // Humidity
+        val entories2 = Utils.getFromSql("mdptest1", "value", "WHERE type = 'humidity'")
         val entries2: MutableList<Entry> = mutableListOf()
         entries2.add(Entry(0f, 5f))
         entries2.add(Entry(1f, 15f))
