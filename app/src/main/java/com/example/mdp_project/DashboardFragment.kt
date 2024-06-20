@@ -1,7 +1,6 @@
 package com.example.mdp_project
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,10 +16,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
-import java.sql.Date
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
@@ -50,44 +45,11 @@ class DashboardFragment : Fragment() {
 //        lineChart.description = description
         lineChart.axisRight.isEnabled = false
 
-        val dateList: ArrayList<Date> = MockDB.date
-        val temperatureList: ArrayList<Float> = MockDB.temperature
-        val humidityList: ArrayList<Float> = MockDB.humidity
-        Log.d("dateList", dateList.toString())
-        Log.d("temperatureList", temperatureList.toString())
-        Log.d("humidityList", humidityList.toString())
-
-        val entries1: ArrayList<Entry> = ArrayList<Entry>()
-        for (i in dateList.indices) {
-            val timestamp = dateList[i].time.toFloat()
-            val temperature = temperatureList[i]
-            entries1.add(Entry(timestamp, temperature))
-        }
-
-        Log.d("entries1", entries1.toString())
-
-        val entries2: ArrayList<Entry> = ArrayList<Entry>()
-        for (i in dateList.indices) {
-            val timestamp = dateList[i].time.toFloat()
-            val humidity = humidityList[i]
-            entries2.add(Entry(timestamp, humidity))
-        }
-
-        Log.d("entries2", entries2.toString())
-
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val xValues = mutableListOf("1", "2", "3", "4","5","6","7","8","9","10")
         val xAxis = lineChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                val date = Date(value.toLong())
-                return dateFormat.format(date)
-            }
-        }
-
-        Log.d("AAAAAA", "line88")
-
-        xAxis.setLabelCount(entries2.size)
+        xAxis.valueFormatter = IndexAxisValueFormatter(xValues)
+        xAxis.setLabelCount(xValues.size)
         xAxis.granularity = 1f
 
         val yAxis = lineChart.axisLeft
@@ -97,26 +59,48 @@ class DashboardFragment : Fragment() {
         yAxis.axisLineColor = resources.getColor(R.color.black)
         yAxis.setLabelCount(10)
 
-        Log.d("AAAAAA", "line100")
+        // Temperature
+        val entries1: MutableList<Entry> = mutableListOf()
+        entries1.add(Entry(0f, 10f))
+        entries1.add(Entry(1f, 10f))
+        entries1.add(Entry(2f, 15f))
+        entries1.add(Entry(3f, 15f))
+        entries1.add(Entry(4f, 20f))
+        entries1.add(Entry(5f, 20f))
+        entries1.add(Entry(6f, 25f))
+        entries1.add(Entry(7f, 25f))
+        entries1.add(Entry(8f, 30f))
+        entries1.add(Entry(9f, 30f))
+
+        // Humidity
+        val entries2: MutableList<Entry> = mutableListOf()
+        entries2.add(Entry(0f, 5f))
+        entries2.add(Entry(1f, 15f))
+        entries2.add(Entry(2f, 25f))
+        entries2.add(Entry(3f, 30f))
+        entries2.add(Entry(4f, 35f))
+        entries2.add(Entry(5f, 40f))
+        entries2.add(Entry(6f, 45f))
+        entries2.add(Entry(7f, 50f))
+        entries2.add(Entry(8f, 25f))
+        entries2.add(Entry(9f, 10f))
 
         val lineDataSet1 = LineDataSet(entries1, "Temperature")
         lineDataSet1.color = resources.getColor(R.color.red)
         lineDataSet1.valueTextSize = 10F
-        Log.d("AAAAAA", "line105")
+
         val lineDataSet2 = LineDataSet(entries2, "Humidity")
         lineDataSet2.color = resources.getColor(R.color.blue)
         lineDataSet2.valueTextSize = 10F
-        Log.d("AAAAAA", "line109")
+
         val lineData = LineData(lineDataSet1, lineDataSet2)
         lineChart.data = lineData
         lineChart.invalidate()
-        Log.d("AAAAAA", "line113")
+
         binding.TitleDashboard.text = "Temperature & Humidity"
-        Log.d("AAAAAA", "line115")
 
         binding.blinkTemp.setOnClickListener{
             if(toggleTemp == 1){
-                Log.d("AAAAAA", "line119")
                 val lineData = LineData(lineDataSet2)
                 lineChart.data = lineData
                 lineChart.invalidate()
@@ -136,8 +120,9 @@ class DashboardFragment : Fragment() {
                 binding.TitleDashboard.text = "Temperature"
 
             }
+
+
         }
-        Log.d("AAAAAA", "line140")
         binding.blinkHum.setOnClickListener{
             if(toggleHum == 1){
                 val lineData = LineData(lineDataSet1)
