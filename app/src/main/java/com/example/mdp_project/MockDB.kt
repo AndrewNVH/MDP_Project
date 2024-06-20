@@ -1,5 +1,7 @@
 package com.example.mdp_project
 
+import java.sql.Date
+
 object MockDB{
     val member = ArrayList<MemberList>();
     val user: ArrayList<UserList> = arrayListOf(
@@ -9,6 +11,10 @@ object MockDB{
 //        UserList("Albertus","221102613")
 
     )
+
+    val temperature: ArrayList<Float> = arrayListOf()
+    val humidity: ArrayList<Float> = arrayListOf()
+    val date: ArrayList<Date> = arrayListOf()
 
 
 //    val member:ArrayList<MemberList> = arrayListOf(

@@ -27,9 +27,12 @@ class Start : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             val User = Utils.getFromSql("userlist", "user")
             val Pass = Utils.getFromSql("userlist", "pass")
-            val deviceId = Utils.getFromSql("devicelist", "deviceId")
-            val deviceName = Utils.getFromSql("devicelist", "deviceName")
-            val deviceType = Utils.getFromSql("devicelist", "deviceType")
+            val deviceId = Utils.getFromSql("devicelist", "deviceid")
+            val deviceName = Utils.getFromSql("devicelist", "devicename")
+            val deviceType = Utils.getFromSql("devicelist", "devicetype")
+            val entories2 = Utils.getFromSqlFloat("mdptest1", "value", "WHERE type = 'humidity' ORDER BY date DESC LIMIT 20")
+            val entoriesD = Utils.getFromSqlDate("mdptest1", "date", "WHERE type = 'temperature' ORDER BY date DESC LIMIT 10")
+            val entories1 = Utils.getFromSqlFloat("mdptest1", "value", "WHERE type = 'temperature' ORDER BY date DESC LIMIT 20")
             withContext(Dispatchers.Main) {
                 for(i in User.indices){
                     MockDB.user.add(UserList(User[i], Pass[i]))
@@ -37,7 +40,12 @@ class Start : AppCompatActivity() {
                 for(i in deviceId.indices){
                     MockDB.member.add(MemberList(deviceId[i].toString(), deviceName[i].toString(), deviceType[i].toString()))
                 }
-                Log.d("User", MockDB.user.toString())
+                for(i in entoriesD.indices){
+                    MockDB.humidity.add(entories2[i])
+                    MockDB.temperature.add(entories1[i])
+                    MockDB.date.add(entoriesD[i])
+                }
+//                Log.d("User", MockDB.user.toString())
 
 
             }
