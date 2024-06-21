@@ -27,6 +27,12 @@
         <item>Indonesia</item>
     </string-array>
 
+    <string-array name="Type">
+        <item>sensor</item>
+        <item>lamp</item>
+        <item>lcd</item>
+    </string-array>
+
     <string-array name="memberNameList">
         <item>Tamura Hono</item>
         <item>Yamashita Shizuki</item>
@@ -69,4 +75,7 @@
     <string name="reg">Daftar</string>
     <string name="LCD_Text">Masukan Kalimat</string>
     <string name="back">Kembali</string>
+    <string name="add">Tambah Perangkat</string>
+    <string name="infoDeviceName">Nama Perangkat</string>
+    <string name="infoDeviceIp">Alamat IP Perangkat</string>
 </resources>

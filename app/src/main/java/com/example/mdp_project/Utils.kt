@@ -9,6 +9,7 @@ import java.sql.SQLException
 import java.sql.Statement
 
 object Utils {
+    val IPADD: String = "192.168.1.34"
     fun getFromSql(tableName: String, columnName: String, filter: String? = null): ArrayList<String> {
         val sql = if (filter == null) "SELECT $columnName FROM $tableName" else "SELECT $columnName FROM $tableName $filter"
         Log.d("Database", sql)
@@ -19,7 +20,7 @@ object Utils {
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "jdbc:mariadb://$IPADD:3306/exampledb",
                 "trial2",
                 "trial"
             )
@@ -61,7 +62,7 @@ object Utils {
 
             // Establish a connection to the database
             conn = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "jdbc:mariadb://$IPADD:3306/exampledb",
                 "trial2",
                 "trial"
             )
@@ -112,7 +113,7 @@ object Utils {
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "jdbc:mariadb://$IPADD:3306/exampledb",
                 "trial2",
                 "trial"
             )
@@ -140,15 +141,15 @@ object Utils {
     }
 
 
-    fun sendToSql(tableName: String, columnName: String, value: String){
-        val sql = "INSERT INTO $tableName ($columnName) VALUES ('$value')"
+    fun sendToSqlDevice(deviceid: String, devicename: String, devicetype: String){
+        val sql = "INSERT INTO devicelist (deviceid, devicename, devicetype) VALUES (${deviceid.toInt()}, '$devicename', '$devicetype')"
         try {
             // Load the MariaDB JDBC driver
             Class.forName("org.mariadb.jdbc.Driver")
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://192.168.1.34:3306/exampledb",
+                "jdbc:mariadb://$IPADD:3306/exampledb",
                 "trial2",
                 "trial"
             )
@@ -161,6 +162,7 @@ object Utils {
 
             // Close the connection
             conn.close()
+            MockDB.member.add(MemberList(deviceid, devicename, devicetype))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -174,7 +176,7 @@ object Utils {
 
             // Establish a connection to the database
             val conn: Connection = DriverManager.getConnection(
-                "jdbc:mariadb://localhost:3306/exampledb",
+                "jdbc:mariadb://$IPADD:3306/exampledb",
                 "trial2",
                 "trial"
             )

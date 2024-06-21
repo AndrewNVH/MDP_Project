@@ -55,7 +55,9 @@ class HomeFragment : Fragment(),  MemberListAdapter.OnItemClickListener{
         binding.memberRv.adapter = memberAdapter
         binding.memberRv.layoutManager = GridLayoutManager(context,2)
 //        binding.memberRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
+        binding.button.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.fragment_container, AddDeviceFragment()).commit()
+        }
 
 
     }

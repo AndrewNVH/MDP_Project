@@ -60,11 +60,11 @@ class InfoFragment : Fragment() {
         binding.seekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 binding.seekBarValue.text = p1.toString()
-                ioScope.launch {
-                    val deviceIpAddress = "http://" + binding.deviceIpAdd.text.toString()
-                    API.configureRetrofit(deviceIpAddress)
-                    API.retrofitService.ledBrightness(p1.toString())
-                }
+//                ioScope.launch {
+//                    val deviceIpAddress = "http://" + binding.deviceIpAdd.text.toString()
+//                    API.configureRetrofit(deviceIpAddress)
+//                    API.retrofitService.ledBrightness(p1.toString())
+//                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -73,6 +73,11 @@ class InfoFragment : Fragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                ioScope.launch {
+                    val deviceIpAddress = "http://" + binding.deviceIpAdd.text.toString()
+                    API.configureRetrofit(deviceIpAddress)
+                    API.retrofitService.ledBrightness(binding.seekBarValue.text.toString())
+                }
                 Toast.makeText(requireContext(), "SeekBar touched!", Toast.LENGTH_SHORT).show()
             }
         })
