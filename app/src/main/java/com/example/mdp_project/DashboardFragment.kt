@@ -16,6 +16,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
@@ -110,11 +112,15 @@ class DashboardFragment : Fragment() {
         lineChart.setScaleEnabled(true)
         lineChart.setPinchZoom(true)
 
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val dbDate = MockDB.date
+        val xValues: MutableList<String> = dbDate.map { date -> dateFormat.format(date) }.toMutableList()
+
         // yyyy-MM-dd HH:mm
-        val xValues = mutableListOf("2024-06-20 00:00", "2024-06-20 01:00", "2024-06-20 02:00", "2024-06-20 03:00",
-            "2024-06-20 04:00", "2024-06-20 05:00", "2024-06-20 06:00", "2024-06-20 07:00", "2024-06-20 08:00",
-            "2024-06-20 09:00", "2024-06-20 10:00", "2024-06-20 11:00", "2024-06-20 12:00", "2024-06-20 13:00",
-            "2024-06-20 14:00", "2024-06-20 15:00")
+//        val xValues = mutableListOf("2024-06-20 00:00", "2024-06-20 01:00", "2024-06-20 02:00", "2024-06-20 03:00",
+//            "2024-06-20 04:00", "2024-06-20 05:00", "2024-06-20 06:00", "2024-06-20 07:00", "2024-06-20 08:00",
+//            "2024-06-20 09:00", "2024-06-20 10:00", "2024-06-20 11:00", "2024-06-20 12:00", "2024-06-20 13:00",
+//            "2024-06-20 14:00", "2024-06-20 15:00")
         val xAxis = lineChart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.valueFormatter = IndexAxisValueFormatter(xValues)
@@ -132,12 +138,15 @@ class DashboardFragment : Fragment() {
         yAxis.axisLineColor = resources.getColor(R.color.black)
         yAxis.setLabelCount(10)
 
-        val temperatureList : MutableList<Float> = mutableListOf(
-            10f, 10f, 15f, 15f, 20f, 20f, 25f, 25f, 30f, 30f, 35f, 35f, 40f, 40f, 45f, 45f
-        )
-        val humidityList : MutableList<Float> = mutableListOf(
-            5f, 15f, 25f, 30f, 35f, 45f, 50f, 25f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f
-        )
+        val temperatureList = MockDB.temperature.toMutableList()
+        val humidityList = MockDB.humidity.toMutableList()
+
+//        val temperatureList : MutableList<Float> = mutableListOf(
+//            10f, 10f, 15f, 15f, 20f, 20f, 25f, 25f, 30f, 30f, 35f, 35f, 40f, 40f, 45f, 45f
+//        )
+//        val humidityList : MutableList<Float> = mutableListOf(
+//            5f, 15f, 25f, 30f, 35f, 45f, 50f, 25f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f
+//        )
 
         //x nya index, Y nya ganti temperature value
         val entries1: MutableList<Entry> = mutableListOf()
