@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import com.example.mdp_project.databinding.FragmentLCDBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class LCDFragment : Fragment() {
+    val ioScope = CoroutineScope(Dispatchers.IO)
     lateinit var binding : FragmentLCDBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,11 @@ class LCDFragment : Fragment() {
         Log.d("deviceName", deviceInfo.memberName)
 
         binding.btnBackLCD.setOnClickListener{
+            ioScope.launch {
+                val deviceIpAddress = "http://" + binding.deviceIpAddLCD.text.toString()
+                API.configureRetrofit(deviceIpAddress)
+                API.retrofitService.LCD(binding.LCDText.text.toString())
+            }
             parentFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
         }
 

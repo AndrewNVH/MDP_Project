@@ -23,7 +23,7 @@ interface ESPService {
     suspend fun ledBrightness(@Query("brightness") brightness:String ):EspResponse
 
     @GET("LCD")
-    suspend fun LCD(@Query("message") message:String ):EspResponse
+    suspend fun LCD(@Query("LCDmessage") LCDmessage:String ):EspResponse
 }
 
 object API {

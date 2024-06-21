@@ -112,7 +112,7 @@ class DashboardFragment : Fragment() {
         lineChart.setScaleEnabled(true)
         lineChart.setPinchZoom(true)
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val dbDate = MockDB.date
         val xValues: MutableList<String> = dbDate.map { date -> dateFormat.format(date) }.toMutableList()
 
