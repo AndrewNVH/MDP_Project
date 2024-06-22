@@ -34,6 +34,9 @@ class SensorFragment : Fragment() {
                 parentFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
             }
         })
+        binding.btnBacksns.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+        }
 
         val data = arguments?.getString("key")
         Log.d("data", data.toString())
@@ -41,6 +44,8 @@ class SensorFragment : Fragment() {
         val deviceInfo = MockDB.member[position!!]
         Log.d("deviceName", deviceInfo.toString())
         Log.d("deviceName", deviceInfo.memberName)
+
+        binding.deviceNameSensor.setText(deviceInfo.memberName)
     }
 
 }

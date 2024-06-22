@@ -44,6 +44,8 @@ class LCDFragment : Fragment() {
         Log.d("deviceName", deviceInfo.toString())
         Log.d("deviceName", deviceInfo.memberName)
 
+        binding.deviceNameLCD.setText(deviceInfo.memberName)
+
         binding.btnBackLCD.setOnClickListener{
             ioScope.launch {
                 val deviceIpAddress = "http://" + binding.deviceIpAddLCD.text.toString()

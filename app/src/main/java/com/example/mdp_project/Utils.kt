@@ -9,7 +9,7 @@ import java.sql.SQLException
 import java.sql.Statement
 
 object Utils {
-    val IPADD: String = "192.168.1.34"
+    val IPADD: String = "192.168.43.169"
     fun getFromSql(tableName: String, columnName: String, filter: String? = null): ArrayList<String> {
         val sql = if (filter == null) "SELECT $columnName FROM $tableName" else "SELECT $columnName FROM $tableName $filter"
         Log.d("Database", sql)

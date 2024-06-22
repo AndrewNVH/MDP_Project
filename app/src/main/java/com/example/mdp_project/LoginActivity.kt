@@ -22,10 +22,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         // Initialize the database connection and take usernames and passwords from the database
-
-
     }
 
 
